@@ -1,0 +1,137 @@
+[
+  {
+    "id": "tuffclient",
+    "tag": "CLIENT",
+    "name": "TuffClient",
+    "version": "1.0",
+    "fileType": "ZIP",
+    "description": "Minecraft utility client packaged as a ZIP file.",
+    "asset": "TuffClient.zip"
+  },
+  {
+    "id": "wurstclient-188",
+    "tag": "CLIENT",
+    "name": "WurstClient 1.8.8",
+    "version": "1.8.8",
+    "fileType": "ZIP",
+    "description": "Legacy Wurst client for Minecraft 1.8.8.",
+    "asset": "WurstClient 1.8.8.zip"
+  },
+  {
+    "id": "messenger-20",
+    "tag": "HTML",
+    "name": "Messenger 2.0",
+    "version": "2.0",
+    "fileType": "HTML",
+    "description": "Standalone HTML messenger application.",
+    "asset": "Messenger.2.0.html"
+  },
+  {
+    "id": "4simpleproblems",
+    "tag": "HTML",
+    "name": "4 Simple Problems v5",
+    "version": "v5",
+    "fileType": "HTML",
+    "description": "Latest version of the 4 Simple Problems HTML project.",
+    "asset": "4simpleproblems_v5_latest.html"
+  },
+  {
+    "id": "emulatorjs",
+    "tag": "HTML",
+    "name": "Emulator.JS",
+    "version": "1.0",
+    "fileType": "HTML",
+    "description": "Standalone Emulator JavaScript HTML project.",
+    "asset": "Emulator.JS.html"
+  },
+  {
+    "id": "gn-math",
+    "tag": "ZIP",
+    "name": "gn-math",
+    "version": "1.0",
+    "fileType": "ZIP",
+    "description": "Mathematics utility packaged as a ZIP file.",
+    "asset": "gn-math.zip"
+  },
+  {
+    "id": "eaglercraft-1122",
+    "tag": "CLIENT",
+    "name": "Eaglercraft 1.12.2",
+    "version": "1.12.2",
+    "fileType": "ZIP",
+    "description": "Eaglercraft client for Minecraft 1.12.2.",
+    "asset": "Eaglercraft 1.12.2.zip"
+  },
+  {
+    "id": "eaglercraft-188",
+    "tag": "CLIENT",
+    "name": "Eaglercraft 1.8.8",
+    "version": "1.8.8",
+    "fileType": "ZIP",
+    "description": "Eaglercraft client for Minecraft 1.8.8.",
+    "asset": "Eaglercraft 1.8.8.zip"
+  },
+  {
+    "id": "elite-gamez",
+    "tag": "HTML",
+    "name": "elite gamez",
+    "version": "1.0",
+    "fileType": "HTML",
+    "description": "Updated Elite-Gamez game hub file.",
+    "asset": "elite gamez.html"
+  },
+  {
+    "id": "arcade-5",
+    "tag": "ZIP",
+    "name": "arcade-5",
+    "version": "5.0",
+    "fileType": "ZIP",
+    "description": "IMPORTANT: PRESS Z, M, G TO ACCESS GAMES",
+    "asset": "arcade-5.zip"
+  },
+  {
+    "id": "vertex-gold",
+    "tag": "ZIP",
+    "name": "Vertex-Gold",
+    "version": "2.0",
+    "fileType": "ZIP",
+    "description": "Games, movies, and apps in a HTML file.",
+    "asset": "Vertex-Gold-main.zip"
+  },
+  {
+    "id": "kriptic-edition",
+    "tag": "ZIP",
+    "name": "Kriptic-Edition",
+    "version": "3.0",
+    "fileType": "ZIP",
+    "description": "Games, movies, shows, and cheats.",
+    "asset": "Kriptic-Edition-3.0-main.zip"
+  },
+  {
+    "id": "bees-work",
+    "tag": "ZIP",
+    "name": "Bees-Work",
+    "version": "8.2",
+    "fileType": "ZIP",
+    "description": "Over 2,000 games.",
+    "asset": "Bees-Work-main.zip"
+  },
+  {
+    "id": "ghost-link",
+    "tag": "ZIP",
+    "name": "Ghost Link",
+    "version": "5.2",
+    "fileType": "ZIP",
+    "description": "Working AI and 1,000 games.",
+    "asset": "ghostlinkhub.zip"
+  },
+  {
+    "id": "diesmos",
+    "tag": "HTML",
+    "name": "Diesmos",
+    "version": "9.1",
+    "fileType": "HTML",
+    "description": "From my buds at Diesmos.",
+    "asset": "Diesmos.html"
+  }
+]
