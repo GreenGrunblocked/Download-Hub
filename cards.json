@@ -1,8 +1,8 @@
 [
   {
-    "id": "tuffclientvv",
+    "id": "tuffclient",
     "tag": "CLIENT",
-    "name": "TuffClientvv",
+    "name": "TuffClient",
     "version": "1.0",
     "fileType": "ZIP",
     "description": "Minecraft utility client packaged as a ZIP file.",
