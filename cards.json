@@ -1,5 +1,14 @@
 [
   {
+    "id": "gn-math",
+    "tag": "ZIP",
+    "name": "gn-math",
+    "version": "1.0",
+    "fileType": "ZIP",
+    "description": "Mathematics utility packaged as a ZIP file.",
+    "asset": "gn-math.zip"
+  },
+  {
     "id": "tuffclient",
     "tag": "CLIENT",
     "name": "TuffClient",
@@ -43,15 +52,6 @@
     "fileType": "HTML",
     "description": "Standalone Emulator JavaScript HTML project.",
     "asset": "Emulator.JS.html"
-  },
-  {
-    "id": "gn-math",
-    "tag": "ZIP",
-    "name": "gn-math",
-    "version": "1.0",
-    "fileType": "ZIP",
-    "description": "Mathematics utility packaged as a ZIP file.",
-    "asset": "gn-math.zip"
   },
   {
     "id": "eaglercraft-1122",
