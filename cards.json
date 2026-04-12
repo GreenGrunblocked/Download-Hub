@@ -169,5 +169,14 @@
     "fileType": "HTML",
     "description": "FINALLY have proxys working in a browser locally executed via HTML. \nYour typical proxy, with games, but in a file.",
     "asset": "DogeUB_PROXY.html"
+  },
+  {
+    "id": "roblox",
+    "tag": "CLIENT",
+    "name": "ROBLOX",
+    "version": "1.0",
+    "fileType": "HTML",
+    "description": "ROBLOX IN A FILE",
+    "asset": "Roblox.html"
   }
 ]
