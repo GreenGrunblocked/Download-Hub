@@ -1,0 +1,7 @@
+Some free api keys, you're welcome!
+
+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
+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
+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
+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
+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
