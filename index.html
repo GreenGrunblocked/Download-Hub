@@ -495,57 +495,6 @@ resize(); createStars(); draw();
 function esc(str) { return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 // ===== GO =====
 init();
-  <!-- ===== LUMIN SDK ===== -->
-<script src="https://cdn.jsdelivr.net/gh/luminsdk/script@latest/lumin.min.js"></script>
-
-<script>
-// ===== YOUR EXISTING INIT (kept minimal so nothing breaks) =====
-async function init(){
-  try{
-    const cards = await fetch('cards.json').then(r=>r.json());
-    const grid = document.getElementById('cardsGrid');
-    grid.innerHTML = '';
-
-    cards.forEach(card=>{
-      const el = document.createElement('div');
-      el.className = 'card';
-      el.innerHTML = `
-        <h3>${card.name}</h3>
-        <p>${card.description}</p>
-        <a href="${card.asset}" download>Download</a>
-      `;
-      grid.appendChild(el);
-    });
-
-  }catch(e){
-    console.log("cards failed");
-  }
-}
-
-// ===== START SITE =====
-init();
-
-
-// ===== LUMIN GAMES =====
-let luminLoaded = false;
-
-document.getElementById('openGames').onclick = () => {
-  document.getElementById('gamesOverlay').style.display = 'flex';
-
-  if (!luminLoaded) {
-    setTimeout(() => {
-      Lumin.init({
-        container: '#gamesContainer',
-        theme: 'dark'
-      });
-      luminLoaded = true;
-    }, 100);
-  }
-};
-
-document.getElementById('closeGames').onclick = () => {
-  document.getElementById('gamesOverlay').style.display = 'none';
-};
 </script>
 </body>
 </html>
