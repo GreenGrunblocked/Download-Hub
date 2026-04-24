@@ -19,7 +19,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: Inter, system-ui, sans-serif; }
 
 body {
-  background: #0f1115;
+  background: var(--bg);
   color: var(--text);
   min-height: 100vh;
   padding: 2.5rem;
@@ -82,13 +82,80 @@ header {
   background: var(--card);
   padding: 20px;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes content to the top and button to bottom */
+}
+
+.card-info {
+    margin-bottom: 15px; /* Space between info and button */
+}
+
+.card h3 {
+  margin-bottom: 5px;
+  font-size: 1.3rem;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.card .version-type {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.card .version-type span {
+    background: rgba(255, 159, 28, 0.1);
+    padding: 3px 8px;
+    border-radius: 5px;
+}
+
+/* Download Button Specifics */
+.download-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* Pushes this to the bottom */
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.download-footer .stars {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.download-button {
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--button);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.download-button:hover {
+  background: #4a55f2; /* Slightly darker shade */
 }
 
 /* ===== GAMES OVERLAY ===== */
 #gamesOverlay {
   position: fixed;
   inset: 0;
-  background: #0f1115;
+  background: var(--bg); /* Use theme background */
   z-index: 999;
   display: none;
   flex-direction: column;
@@ -97,12 +164,35 @@ header {
 #gamesHeader {
   display: flex;
   justify-content: space-between;
-  padding: 15px;
-  background: #161a22;
+  align-items: center;
+  padding: 15px 25px; /* Increased padding */
+  background: var(--card); /* Use theme card background */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#gamesHeader span {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#closeGames {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: color 0.2s;
+}
+
+#closeGames:hover {
+    color: var(--accent);
 }
 
 #gamesContainer {
   flex: 1;
+  overflow-y: auto; /* Ensure scrolling if content exceeds height */
+  padding: 20px;
 }
 </style>
 </head>
@@ -136,7 +226,7 @@ header {
 </header>
 
 <section class="downloads" id="cardsGrid">
-  <!-- your cards will load here -->
+  <!-- cards will load here dynamically -->
 </section>
 
 </main>
@@ -145,26 +235,50 @@ header {
 <script src="https://cdn.jsdelivr.net/gh/luminsdk/script@latest/lumin.min.js"></script>
 
 <script>
-// ===== YOUR EXISTING INIT (kept minimal so nothing breaks) =====
+// ===== INIT FUNCTION TO LOAD CARDS =====
 async function init(){
-  try{
-    const cards = await fetch('cards.json').then(r=>r.json());
-    const grid = document.getElementById('cardsGrid');
-    grid.innerHTML = '';
+  try {
+    const cardsData = await fetch('cards.json').then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    });
 
-    cards.forEach(card=>{
+    const grid = document.getElementById('cardsGrid');
+    grid.innerHTML = ''; // Clear existing cards
+
+    cardsData.forEach(card => {
       const el = document.createElement('div');
       el.className = 'card';
+
+      // Constructing the HTML for each card based on original UI
       el.innerHTML = `
-        <h3>${card.name}</h3>
-        <p>${card.description}</p>
-        <a href="${card.asset}" download>Download</a>
+        <div class="card-info">
+          <h3>${card.name}</h3>
+          <p>${card.description}</p>
+          <div class="version-type">
+            <span>Version: ${card.version}</span>
+            <span>Type: ${card.type}</span>
+          </div>
+        </div>
+        <div class="download-footer">
+          <div class="stars">
+            <!-- Placeholder for stars, assuming rating info is in cards.json -->
+            <!-- Example: <span class="star">★</span><span class="star">★</span>... -->
+            <span>${card.rating ? '★'.repeat(Math.round(card.rating)) + ` (${card.ratingCount})` : ''}</span>
+          </div>
+          <a href="${card.asset}" download class="download-button">Download</a>
+        </div>
       `;
       grid.appendChild(el);
     });
 
-  }catch(e){
-    console.log("cards failed");
+  } catch (e) {
+    console.error("Failed to load or render cards:", e);
+    // Display an error message to the user
+    const grid = document.getElementById('cardsGrid');
+    grid.innerHTML = '<p style="color: red;">Could not load downloads. Please try again later.</p>';
   }
 }
 
@@ -172,26 +286,35 @@ async function init(){
 init();
 
 
-// ===== LUMIN GAMES =====
-let luminLoaded = false;
+// ===== LUMIN GAMES INTEGRATION =====
+let luminLoaded = false; // Flag to ensure Lumin is only initialized once
 
-document.getElementById('openGames').onclick = () => {
+document.getElementById('openGames').addEventListener('click', () => {
   document.getElementById('gamesOverlay').style.display = 'flex';
 
+  // Initialize Lumin SDK only if it hasn't been loaded yet
   if (!luminLoaded) {
+    // Use a slight delay to ensure the overlay is displayed and the DOM is ready
     setTimeout(() => {
-      Lumin.init({
-        container: '#gamesContainer',
-        theme: 'dark'
-      });
-      luminLoaded = true;
-    }, 100);
+      try {
+        Lumin.init({
+          container: '#gamesContainer',
+          theme: 'dark' // Matches your site's theme
+        });
+        luminLoaded = true;
+        console.log("Lumin SDK Initialized");
+      } catch (error) {
+        console.error("Error initializing Lumin SDK:", error);
+        // Optionally display an error message to the user within the overlay
+        document.getElementById('gamesContainer').innerHTML = '<p style="color: red;">Failed to load games.</p>';
+      }
+    }, 100); // 100ms delay
   }
-};
+});
 
-document.getElementById('closeGames').onclick = () => {
+document.getElementById('closeGames').addEventListener('click', () => {
   document.getElementById('gamesOverlay').style.display = 'none';
-};
+});
 </script>
 
 </body>
