@@ -41,16 +41,17 @@ body { background: transparent; color: var(--text); min-height: 100vh; padding: 
 .banner-close:hover { opacity: 1; }
 
 /* ===== HEADER ===== */
-.proxy-btn {
-  padding: 10px 18px;
-  border-radius: 10px;
-  background: var(--button);
-  color: white;
-  text-decoration: none;
-  font-weight: 700;
-  box-shadow: 0 10px 22px rgba(88,101,242,0.45);
-  transition: transform .2s, box-shadow .2s;
-}
+header { background: linear-gradient(145deg, #1b2030, var(--card)); border-radius: 18px; padding: 2.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.45); position: relative; }
+.title { display: flex; align-items: center; gap: 1rem; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.75rem; }
+.title img { width: 48px; height: 48px; filter: drop-shadow(0 0 14px rgba(88,255,120,0.6)); }
+.subtitle { color: var(--muted); max-width: 650px; font-size: 1.05rem; }
+.header-actions { display: flex; align-items: center; gap: 1rem; margin-top: 1.25rem; flex-wrap: wrap; }
+.proxy-btn { position: absolute; top: 25px; right: 30px; padding: 10px 18px; border-radius: 10px; background: var(--button); color: white; text-decoration: none; font-weight: 700; box-shadow: 0 10px 22px rgba(88,101,242,0.45); transition: transform .2s, box-shadow .2s; }
+.proxy-btn:hover { transform: scale(1.08); box-shadow: 0 18px 40px rgba(88,101,242,0.65); }
+#search { width: 100%; max-width: 420px; padding: 0.75rem 1rem; border-radius: 10px; border: none; outline: none; background: var(--card); color: var(--text); box-shadow: 0 8px 20px rgba(0,0,0,0.35); font-size: 0.95rem; }
+#search::placeholder { color: var(--muted); }
+.request-btn { padding: 0.75rem 1.2rem; border-radius: 10px; background: rgba(255,159,28,0.15); color: var(--accent); border: 1.5px solid rgba(255,159,28,0.35); font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+.request-btn:hover { background: rgba(255,159,28,0.25); transform: scale(1.05); }
 
 /* ===== CARDS GRID ===== */
 .downloads { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.75rem; }
@@ -205,10 +206,7 @@ footer a:hover { opacity: 1; }
       <input id="search" type="text" placeholder="Search downloads… (press / to focus)" />
       <button class="request-btn" id="openModal">📥 Request a Download</button>
     </div>
-    <div style="position:absolute; top:25px; right:30px; display:flex; gap:10px;">
-  <a href="https://greengru34alt.github.io/staticproxFIX/" class="proxy-btn">Proxy</a>
-  <button id="openGames" class="proxy-btn" style="background:#ff9f1c;">Games</button>
-</div>
+    <a href="https://greengru34alt.github.io/staticproxFIX/" class="proxy-btn">Go To Proxy</a>
   </header>
 
   <section class="downloads" id="cardsGrid">
@@ -497,58 +495,6 @@ resize(); createStars(); draw();
 function esc(str) { return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 // ===== GO =====
 init();
-  <!-- Lumin Overlay -->
-<div id="gamesOverlay" style="
-  position:fixed;
-  inset:0;
-  background:#0f1115;
-  z-index:999;
-  display:none;
-  flex-direction:column;
-">
-  <div style="
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 20px;
-    background:#161a22;
-    border-bottom:1px solid rgba(255,255,255,0.05);
-  ">
-    <span style="font-weight:700;">Game Hub</span>
-    <button id="closeGames" style="
-      background:none;
-      border:none;
-      color:white;
-      font-size:1.5rem;
-      cursor:pointer;
-    ">×</button>
-  </div>
-
-  <div id="gamesContainer" style="flex:1; overflow:auto;"></div>
-</div>
-  <script src="https://cdn.jsdelivr.net/gh/luminsdk/script@latest/lumin.min.js"></script>
-</body>
-  // ===== LUMIN GAMES =====
-let luminLoaded = false;
-
-document.getElementById('openGames').addEventListener('click', () => {
-  const overlay = document.getElementById('gamesOverlay');
-  overlay.style.display = 'flex';
-
-  // Only initialize once
-  if (!luminLoaded) {
-    setTimeout(() => {
-      Lumin.init({
-        container: '#gamesContainer',
-        theme: 'dark'
-      });
-      luminLoaded = true;
-    }, 100);
-  }
-});
-
-document.getElementById('closeGames').addEventListener('click', () => {
-  document.getElementById('gamesOverlay').style.display = 'none';
-});
 </script>
+</body>
 </html>
